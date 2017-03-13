@@ -9,14 +9,22 @@ class QuestionList extends React.Component {
   render() {
     debugger;
     return(
-      <div>
-        <Question
-          id = {this.props.questions.id}
-          question = {this.props.questions.question}
-          answer = {this.props.questions.answer}/>
-      </div>
+
+      let questionList = this.props.questions.map((question) => {
+        return (
+          <Question
+            id = {this.props.questions.id}
+            question = {this.props.questions.question}
+            answer = {this.props.questions.answer}/>
+        )
+      })
+
     );
+    return (
+      <ul>{questionList}</ul>
+    )
   }
 };
+
 
 export default QuestionList;
