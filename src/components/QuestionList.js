@@ -9,7 +9,11 @@ class QuestionList extends React.Component {
   }
 
   handleQuestionClick(id) {
-    this.setState( {selectedQuestionId: id});
+    if (this.state.selectedQuestionId === id) {
+      this.setState( {selectedQuestionId: null})
+    } else {
+      this.setState( {selectedQuestionId: id});
+    }
   }
 
   render() {
@@ -32,7 +36,7 @@ class QuestionList extends React.Component {
     });
 
     return (
-      <ul class="vertical menu" data-accordion-menu>{questionList}</ul>
+      <ul>{questionList}</ul>
     );
   }
 }
