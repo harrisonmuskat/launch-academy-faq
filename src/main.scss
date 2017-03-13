@@ -1,2 +1,35 @@
 @import 'stylesheets/Colors';
 @import 'stylesheets/App';
+
+li.hideClass {
+  visibility: hidden;
+}
+
+li.showClass {
+  list-style: none;
+  padding: 0 18px;
+  background-color: #E5F3F4;
+  padding: 18px;
+  transition: max-height 0.2s ease-out;
+}
+
+body {
+  background-color: #E5F3F4;
+  display: block;
+}
+
+h1 {
+  margin: auto;
+  text-align: center;
+  color: #37BECC;
+}
+
+.question {
+  background-color: #E5F3F4;
+  color: #7D878E;
+  cursor: pointer;
+  padding: 18px;
+  width: auto;
+  text-align: left;
+  transition: 0.4s;
+}

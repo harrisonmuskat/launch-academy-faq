@@ -7,7 +7,6 @@ class App extends React.Component {
   }
 
   render() {
-    debugger;
     return(
       <div>
         <h1> We're Here to Help </h1>

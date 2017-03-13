@@ -4,27 +4,38 @@ import Question from './Question'
 class QuestionList extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {selectedQuestionId: null}
+    this.handleQuestionClick = this.handleQuestionClick.bind(this)
+  }
+
+  handleQuestionClick(id) {
+    this.setState( {selectedQuestionId: id});
   }
 
   render() {
-    debugger;
-    return(
+    let questionList = this.props.questions.map((question) => {
+      let selected = "hideClass";
 
-      let questionList = this.props.questions.map((question) => {
-        return (
-          <Question
-            id = {this.props.questions.id}
-            question = {this.props.questions.question}
-            answer = {this.props.questions.answer}/>
-        )
-      })
+      if (question.id === this.state.selectedQuestionId) {
+        selected = "showClass";
+      }
 
-    );
+      let onQuestionClick = () => this.handleQuestionClick(question.id);
+      return (
+        <Question
+          key = {question.id}
+          question = {question.question}
+          answer = {question.answer}
+          selected = {selected}
+          handleQuestionClick = {onQuestionClick}/>
+      )
+    });
+
     return (
-      <ul>{questionList}</ul>
-    )
+      <ul class="vertical menu" data-accordion-menu>{questionList}</ul>
+    );
   }
-};
+}
 
 
 export default QuestionList;

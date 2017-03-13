@@ -6,12 +6,13 @@ class Question extends React.Component {
   }
 
   render() {
-    debugger;
     return(
-      <div>
-        <p>{this.props.question}</p>
-        <p>{this.props.answer}</p>
-      </div>
+      <li>
+        <a className = "question" href="#" onClick={this.props.handleQuestionClick}>{this.props.question}</a>
+        <ul class="menu vertical nested">
+          <li className={this.props.selected}>{this.props.answer}</li>
+        </ul>
+      </li>
     );
   }
 };
