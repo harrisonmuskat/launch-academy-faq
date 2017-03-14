@@ -4,7 +4,10 @@ import Question from './Question'
 class QuestionList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {selectedQuestionId: null}
+    this.state = {
+      selectedQuestionId: null,
+      questions: this.props.questions
+    }
     this.handleQuestionClick = this.handleQuestionClick.bind(this)
   }
 
@@ -16,8 +19,28 @@ class QuestionList extends React.Component {
     }
   }
 
+  componentDidMount() {
+    fetch('http://localhost:3000/api/v1/questions')
+      .then(response => {
+        if(response.ok) {
+          console.log(response);
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+              error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        console.log(body);
+        this.setState({questions: body});
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
   render() {
-    let questionList = this.props.questions.map((question) => {
+    let questionList = this.state.questions.map((question) => {
       let selected = "hideClass";
 
       if (question.id === this.state.selectedQuestionId) {
